@@ -49,7 +49,7 @@ io.on('connection', socket => {
     });
     socket.on('lirik', async (keyword) => {
         let error;
-        let result = await Lyrics.search(keyword).catch(e => {
+        let result = await lyrics.search(keyword).catch(e => {
             error = e;
         });
         if(!error){
@@ -60,22 +60,22 @@ io.on('connection', socket => {
     });
     socket.on('anime', async (keyword) => {
         let result = await anime.searchAnime(keyword);
-        socket.emit('result', `<div class="card" style="width: 18rem;">
-        <img src="${results[0].posterImage.original}">
+        socket.emit('result', `<div class="card" style="width: 50%;">
+        <img src="${result[0].posterImage.original}" height="500">
         <div class="card-body">
             <h5>Nama Anime</h5>
-            <p>${results[0].titles.english}</p>
+            <p>${result[0].titles.english}</p>
             <h5>Synopsis</h5>
-            <p>${results[0].synopsis}</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${getYoutubeId(results[0].youtubeVideoId)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>${result[0].synopsis}</p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${getYoutubeId(result[0].youtubeVideoId)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>`);
     });
     socket.on('genshin', async (keyword) => {
         try{
             let result = genshin.characters(keyword.toLowerCase());
-            socket.emit('result', `<div class="card" style="width: 18rem;">
-            <img src="${result.image}">
+            socket.emit('result', `<div class="card" style="width: 50%;">
+            <img src="${result.image}" height="500">
             <div class="card-body">
                 <h5>Nama</h5>
                 <p>${result.name}</p>
@@ -95,7 +95,6 @@ io.on('connection', socket => {
                 <p>${result.rarity}</p>
                 <h5>Info Lebih Lanjut</h5>
                 <p>${result.url}</p>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/${getYoutubeId(results[0].youtubeVideoId)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>`);
         }catch(e){
@@ -104,7 +103,7 @@ io.on('connection', socket => {
     });
     socket.on('ytmp4', async (keyword) => {
         if(validateYouTubeUrl(keyword)){
-            socket.emit('result', `<a href="https://whatsappbot.racyete.repl.co/ytmp4?url=${args[0]}" class="btn btn-primary">Download Video</a>`);
+            socket.emit('result', `<a href="https://whatsappbot.racyete.repl.co/ytmp4?url=${keyword}" class="btn btn-primary">Download Video</a>`);
         }else{
             socket.emit('result', 'Masukan URL Youtube yang benar');
         }

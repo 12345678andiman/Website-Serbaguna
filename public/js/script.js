@@ -12,6 +12,6 @@ form.addEventListener('submit', e => {
     keyword.value = '';
 });
 
-socket.on('result', result => {
-    result.innerHTML = result;
+socket.on('result', r => {
+    result.innerHTML = r;
 });
