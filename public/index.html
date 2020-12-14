@@ -9,23 +9,34 @@
 <body>
     <div class="container mt-5">
         <h1>Website Serbaguna</h1>
-        <div class="row">
-            <div class="col-2">
-                <form id="search">
-                    <select class="form-select" required>
+        <form id="search">
+            <div class="row">
+                <div class="col-2">
+                    <select class="form-select" id="select">
                         <option value="brainly">Brainly</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="lirik">Lirik</option>
+                        <option value="anime">Anime</option>
+                        <option value="genshin">Genshin</option>
+                        <option value="ytmp4">Download Video YouTube</option>
                     </select>
-                </form>
+                </div>
+                <div class="col-9">
+                    <input type="text" class="form-control" id="keyword" placeholder="Ketikan kata kunci" required>
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary">Cari</button>
+                </div>
             </div>
-            <div class="col-9">
-                <input type="text" class="form-control" id="search" placeholder="Ketikan kata kunci">
-            </div>
-            <div class="col-1">
-                <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
+        <div class="card mt-3">
+            <div class="card-body">
+                <h2>Hasil</h2>
+                <div id="result"></div>
             </div>
         </div>
     </div>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
