@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/EmangGek/Website-Serbaguna#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@freezegold/anime.js": "^2.0.3",
+    "@penfoldium/lyrics-search": "^2.0.3",
+    "brainly-scraper-v2": "^1.1.2",
+    "express": "^4.17.1",
+    "genshin-impact-api": "^1.0.8",
+    "socket.io": "^3.0.4"
   }
 }
